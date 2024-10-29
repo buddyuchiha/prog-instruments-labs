@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 import asyncio
-from config import prefix
 
+from config import prefix
 
 
 class Help(commands.Cog):

@@ -1,12 +1,14 @@
-import discord
-from discord.ext import commands
 import random
 import json
 import sqlite3
 import asyncio
 from datetime import datetime
-import pytz
 from string import Template
+
+import discord
+from discord.ext import commands
+import pytz
+
 from config import piar
 
 
@@ -14,6 +16,7 @@ url = []
 with open('url.json', 'r') as f: #открыли файл с данными
     url = json.load(f)
 timeout = 60 * 60
+
 
 class Auto(commands.Cog):
     def __init__(self, client):
@@ -239,6 +242,7 @@ class Auto(commands.Cog):
             embed.set_footer(text= 'Error: 005')
             await ctx.send(embed = embed)
             return
+
 
 def setup(client):
     client.add_cog(Auto(client))

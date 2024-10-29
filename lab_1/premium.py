@@ -1,10 +1,13 @@
+import sqlite3
+from datetime import datetime
+from string import Template
+
 import discord
 from discord.ext import commands
-from datetime import datetime
 import pytz
-from string import Template
-import sqlite3
+
 from config import acces
+
 
 class Prem(commands.Cog):
     def __init__(self, client):
@@ -52,7 +55,10 @@ class Prem(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed (title = f'🔔 **Ошибка.**', color = 0xA52A2A)
+            embed = discord.Embed (
+                title = f'🔔 **Ошибка.**', 
+                color = 0xA52A2A
+                )
             embed.description = f'**Пропущены** аргументы команды!'
             embed.set_footer(text= 'Error: 003')
             await ctx.send(embed = embed)
