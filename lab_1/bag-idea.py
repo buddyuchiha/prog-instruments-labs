@@ -46,6 +46,7 @@ class Other(commands.Cog):
             f'User_nickname: {ctx.author.mention}\n'
             f'User_id: {ctx.author.id}||'
         )
+        
         await channel.send(embed = embed)
         emb = discord.Embed(color=0x696969)
         emb.description = (
@@ -93,6 +94,7 @@ class Other(commands.Cog):
             f'User_nickname: {ctx.author.mention}\n'
             f'User_id: {ctx.author.id}||'
         )
+        
         await channel.send(embed=embed)
         emb = discord.Embed(color=0x696969)
         emb.description = (

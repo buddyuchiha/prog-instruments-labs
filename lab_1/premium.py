@@ -40,6 +40,7 @@ class Prem(commands.Cog):
         b = first2(a)
         c = int(b)
         v = c + 30
+        
         if v > 30:
             v -= 30
             result_day = v
@@ -47,6 +48,7 @@ class Prem(commands.Cog):
             f = int(r)
             result_month = f + 1
             result = f'0{result_day}.0{result_month}'
+            
         add(id, result)
         embed = discord.Embed(color=0xFFFAFA)
         embed.description = '👌'

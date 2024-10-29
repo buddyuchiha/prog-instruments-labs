@@ -87,6 +87,7 @@ class Auto(commands.Cog):
             moscow_time = datetime.now(pytz.timezone('Europe/Moscow'))
             time = moscow_time.strftime('%d.%m')
             result = check_time(time)
+            
             if result != None:
                 delete_result = get_server(time)
                 delete(time, delete_result)
@@ -97,19 +98,23 @@ class Auto(commands.Cog):
             )
         channels_mem = check_meme(channels_m)
         chance = [1, 2]
+        
         while True:
             prem()
             meme = url["meme"]
             check_m = check_meme(check_m)
+            
             for element in check_m:
                 if element not in channels_mem:
                     channels_mem.append(element)
+                    
             for channel_id in channels_mem:
                 await self.client.wait_until_ready()
                 try:
                     channel = self.client.get_channel(int(channel_id))
                 except:
                     pass
+                
                 result_gold = check_gold(channel_id)
                 result_chance = random.choice(chance)
                 result_piar = random.choice(piar)
@@ -119,6 +124,7 @@ class Auto(commands.Cog):
                     title='**Auto memes**', color=0xFFFAFA
                     )
                 emb.set_image(url = ran)
+                
                 if result_chance == 1 and result_gold != 1:
                     emb.set_footer(text=f'{result_piar}')
                 try:
@@ -142,6 +148,7 @@ class Auto(commands.Cog):
                 for result in cur:
                     a = result[0]
                 return a
+            
         result_gold = check_gold(ctx.message.guild.id)
         chance = [1, 2]
         result_chance = random.choice(chance)
@@ -150,6 +157,7 @@ class Auto(commands.Cog):
         result_meme = random.choice(meme)
         emb = discord.Embed (title='**Memes**', color=0xFFFAFA)
         emb.set_image(url = result_meme)
+        
         if result_chance == 1 and result_gold != 1:
             emb.set_footer(text=f'{result_piar}')
         await ctx.send(embed = emb)
