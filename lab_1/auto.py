@@ -13,7 +13,7 @@ from config import piar
 
 
 url = []
-with open('url.json', 'r') as f: #открыли файл с данными
+with open('url.json', 'r') as f: 
     url = json.load(f)
 timeout = 60 * 60
 
@@ -24,8 +24,8 @@ class Auto(commands.Cog):
         
     @commands.Cog.listener()
     async def on_ready(self):    
-        channels_m = [] # канала мем
-        check_m = [] # проверка мемов
+        channels_m = [] 
+        check_m = [] 
 
         def check_meme(channels_m):
             with  sqlite3.connect('base.db') as bd:
@@ -99,7 +99,6 @@ class Auto(commands.Cog):
         chance = [1, 2]
         while True:
             prem()
-            # начало блока мемов
             meme = url["meme"]
             check_m = check_meme(check_m)
             for element in check_m:
@@ -126,7 +125,6 @@ class Auto(commands.Cog):
                     await channel.send(embed = emb)
                 except:
                     pass
-            # конец блока мемов
             await asyncio.sleep(timeout)
     
     @commands.command()
@@ -161,8 +159,6 @@ class Auto(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def automemes(self, ctx, arg):
-        # подключить postgresql или просто добавить перменную bd
-        # и подключаться к бд 1 ра
 
         def add(arg):
             with  sqlite3.connect('base.db') as bd:

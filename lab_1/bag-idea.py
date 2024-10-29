@@ -24,7 +24,6 @@ class Other(commands.Cog):
             await ctx.send(embed = embed)
             return
         elif '@everyone' or '@here' in text: 
-            # проверка на @everyone/@here и его удаление/замена
             global bi1
             global bi2
             if '@everyone' and '@here' in text:
@@ -72,7 +71,6 @@ class Other(commands.Cog):
             await ctx.send(embed = embed)
             return
         elif '@everyone' or '@here' in text: 
-            # проверка на @everyone/@here и его удаление/замена
             global bi1
             global bi2
             if '@everyone' and '@here' in text:
