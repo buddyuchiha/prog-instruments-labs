@@ -116,7 +116,7 @@ class Auto(commands.Cog):
                 result_meme = random.choice(meme)
                 ran = result_meme
                 emb = discord.Embed (
-                    title = '**Auto memes**', color = 0xFFFAFA
+                    title='**Auto memes**', color=0xFFFAFA
                     )
                 emb.set_image(url = ran)
                 if result_chance == 1 and result_gold != 1:
@@ -148,7 +148,7 @@ class Auto(commands.Cog):
         result_piar = random.choice(piar)
         meme = url["meme"]
         result_meme = random.choice(meme)
-        emb = discord.Embed (title = '**Memes**', color = 0xFFFAFA)
+        emb = discord.Embed (title='**Memes**', color=0xFFFAFA)
         emb.set_image(url = result_meme)
         if result_chance == 1 and result_gold != 1:
             emb.set_footer(text=f'{result_piar}')
@@ -159,6 +159,7 @@ class Auto(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def automemes(self, ctx, arg):
+
 
         def add(arg):
             with  sqlite3.connect('base.db') as bd:
@@ -203,13 +204,13 @@ class Auto(commands.Cog):
         hentai_list = [None, 'None']
 
         if len(arg) < 18:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = 'Вы ввели **некоректный** id канала.'
             embed.set_footer(text= 'Error: 005')
             await ctx.send(embed = embed)
             return
         elif arg.isdigit() == False:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = 'Вы ввели **некоректный** id канала.'
             embed.set_footer(text= 'Error: 005')
             await ctx.send(embed = embed)
@@ -219,7 +220,7 @@ class Auto(commands.Cog):
                 add(arg)
             else:
                 change(arg)
-            embed = discord.Embed(title = '✅ Успешно.', color = 0xFFFAFA)
+            embed = discord.Embed(title='✅ Успешно.', color=0xFFFAFA)
             embed.description = (
                 f'Автопубликация **успешна подключена**'
                 f'участником {ctx.message.author.mention} на канал `{arg}`.'
@@ -227,7 +228,7 @@ class Auto(commands.Cog):
             await ctx.send(embed = embed)
             return
         else:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xFFFAFA)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xFFFAFA)
             embed.description = (
                 'Для **подключения** автопубликации на вашем сервере должно'
                 'быть **более 15 участников** или вы можете оформить' 
@@ -235,8 +236,8 @@ class Auto(commands.Cog):
                 '[Оформить подписку (кликабельно)]'
                 '(https://discord.gg/8BnEfUq99j).'
             )
-            embed.set_footer(text= 'Error: 005')
-            await ctx.send(embed = embed)
+            embed.set_footer(text='Error: 005')
+            await ctx.send(embed=embed)
             return
 
 

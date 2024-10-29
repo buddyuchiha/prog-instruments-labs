@@ -48,7 +48,7 @@ class Prem(commands.Cog):
             result_month = f + 1
             result = f'0{result_day}.0{result_month}'
         add(id, result)
-        embed = discord.Embed(color = 0xFFFAFA)
+        embed = discord.Embed(color=0xFFFAFA)
         embed.description = '👌'
         await ctx.send(embed = embed)
 
@@ -56,21 +56,21 @@ class Prem(commands.Cog):
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
             embed = discord.Embed (
-                title = f'🔔 **Ошибка.**', 
-                color = 0xA52A2A
+                title=f'🔔 **Ошибка.**', 
+                color=0xA52A2A
                 )
-            embed.description = f'**Пропущены** аргументы команды!'
-            embed.set_footer(text= 'Error: 003')
-            await ctx.send(embed = embed)
+            embed.description=f'**Пропущены** аргументы команды!'
+            embed.set_footer(text='Error: 003')
+            await ctx.send(embed=embed)
             return
         if isinstance(error, commands.CommandOnCooldown):
             i = int(error.retry_after)
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = (
                 f'Бот имеет **задержку**, пожалуйста, подождите {i} сек.'
             )
-            embed.set_footer(text= 'Error: 004')
-            await ctx.send(embed = embed)
+            embed.set_footer(text='Error: 004')
+            await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(Prem(client))

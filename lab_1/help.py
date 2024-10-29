@@ -13,8 +13,8 @@ class Help(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def help(self, ctx):
         emb = discord.Embed (
-            title = ':clipboard: Навигация по командам.',
-            color = 0xFFFAFA
+            title=':clipboard: Навигация по командам.',
+            color=0xFFFAFA
         )
         emb.add_field(
             name=f"`{prefix}meme`", 
@@ -57,7 +57,7 @@ class Help(commands.Cog):
             inline=False
         )
         emb.set_footer(
-            text= 'Пригласи меня к себе на сервер m!invite'
+            text='Пригласи меня к себе на сервер m!invite'
         )
         await ctx.send(embed = emb)
 
@@ -67,7 +67,7 @@ class Help(commands.Cog):
         guild_count = len(self.client.guilds)
         embed = discord.Embed(
             title="**Internet Memes Info**",
-            color= 0xFFFAFA
+            color=0xFFFAFA
         )
         embed.set_thumbnail(
             url=self.client.user.avatar_url
@@ -79,12 +79,12 @@ class Help(commands.Cog):
         )
         embed.add_field(
             name="Сервера:",
-            value= '`{}`'.format(guild_count),
+            value='`{}`'.format(guild_count),
             inline=False
         )
         embed.add_field(
             name="Каналов:",
-            value= '`{}`'.format(len(list(self.client.get_all_channels()))),
+            value='`{}`'.format(len(list(self.client.get_all_channels()))),
             inline=False
         )
         await ctx.send(embed=embed)
@@ -94,25 +94,25 @@ class Help(commands.Cog):
     async def invite(self, ctx):
         emb = discord.Embed (
             title='📢 Пригласи бота к себе на сервер!',
-            color = 0xFFFAFA
+            color=0xFFFAFA
         )
         emb.add_field(
-            name ='Инвайт ссылка на бота:',
-            value = '[Пригласить бота (кликабельно)]\
+            name='Инвайт ссылка на бота:',
+            value='[Пригласить бота (кликабельно)]\
                 (https://discord.com/oauth2/authorize?client_id=\
                     773895453494214676&permissions=1074134088&scope=bot)',
-            inline= False
+            inline=False
         )
         emb.add_field(
-            name= 'Сервер тех. поддержки бота:', 
-            value= '[Сервер тех. поддеркжи (кликабельно)]\
+            name='Сервер тех. поддержки бота:', 
+            value='[Сервер тех. поддеркжи (кликабельно)]\
                 (https://discord.gg/8BnEfUq99j)')
         await ctx.send(embed = emb)
 
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def gs(self, ctx):
-        emb = discord.Embed (color = 0xFFD700)
+        emb = discord.Embed (color=0xFFD700)
         emb.description = (
             f'**Подключи возможности золотого сервера!**\n```'
             '1. Мемы без рекламы!```\n```'
@@ -125,7 +125,7 @@ class Help(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def piar(self, ctx):
-        emb = discord.Embed (color = 0xFFFAFA)
+        emb = discord.Embed (color=0xFFFAFA)
         emb.description = (
             f'**Закажи рекламу своего контента!**\n `Более 2.000 серверов`\n'
             'Для заказа рекламы перейдите на наш тех. сервер.' 

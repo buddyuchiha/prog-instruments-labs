@@ -9,7 +9,7 @@ class Other(commands.Cog):
     @commands.command()
     async def bag(self, ctx, *, text = None):
         if not ctx.message.author.guild_permissions.administrator:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = (
                 'Для **отправки** бага на тех. сервер' 
                 'у вас должны быть **админ** права!'
@@ -18,10 +18,10 @@ class Other(commands.Cog):
             await ctx.send(embed = embed)
             return
         elif text == None:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = 'Вы не **описали** баг!'
             embed.set_footer(text= 'Error: 003')
-            await ctx.send(embed = embed)
+            await ctx.send(embed=embed)
             return
         elif '@everyone' or '@here' in text: 
             global bi1
@@ -38,7 +38,7 @@ class Other(commands.Cog):
                 text = bi2
 
         channel = self.client.get_channel(int(773549208577900584))
-        embed = discord.Embed (title = f'🗣 **Новый баг!**', color = 0xFFFAFA)
+        embed = discord.Embed (title=f'🗣 **Новый баг!**', color=0xFFFAFA)
         embed.description = (
             f'**О баге:** `{text}`\nДоп. информация:\n||'
             f'Server name: {ctx.guild.name}\n'
@@ -47,7 +47,7 @@ class Other(commands.Cog):
             f'User_id: {ctx.author.id}||'
         )
         await channel.send(embed = embed)
-        emb = discord.Embed(color = 0x696969)
+        emb = discord.Embed(color=0x696969)
         emb.description = (
             'Баг отправлен на [тех. сервер](https://discord.gg/8BnEfUq99j)!'
         )
@@ -56,16 +56,16 @@ class Other(commands.Cog):
     @commands.command()
     async def idea(self, ctx, *, text = None):
         if not ctx.message.author.guild_permissions.administrator:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = (
                 'Для **отправки** идеи на тех. сервер у вас должны быть'
                 '**админ** права!'
             )
             embed.set_footer(text= 'Error: 002')
-            await ctx.send(embed = embed)
+            await ctx.send(embed=embed)
             return
         elif text == None:
-            embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
+            embed = discord.Embed(title='🔔 Ошибка.', color=0xA52A2A)
             embed.description = 'Вы не **описали** идею!'
             embed.set_footer(text= 'Error: 003')
             await ctx.send(embed = embed)
@@ -85,7 +85,7 @@ class Other(commands.Cog):
                 text = bi2
 
         channel = self.client.get_channel(int(772422615280123914))
-        embed = discord.Embed (title = f'🗣 **Новая идея!**', color = 0xFFFAFA)
+        embed = discord.Embed (title=f'🗣 **Новая идея!**', color=0xFFFAFA)
         embed.description = (
             f'**О идеи:** `{text}`\nДоп. информация:\n||'
             f'Server name: {ctx.guild.name}\n'
@@ -93,13 +93,13 @@ class Other(commands.Cog):
             f'User_nickname: {ctx.author.mention}\n'
             f'User_id: {ctx.author.id}||'
         )
-        await channel.send(embed = embed)
-        emb = discord.Embed(color = 0x696969)
+        await channel.send(embed=embed)
+        emb = discord.Embed(color=0x696969)
         emb.description = (
             'Идея отправлена на [тех. сервер]'
             '(https://discord.gg/8BnEfUq99j)!'
         )
-        await ctx.send(embed = emb)
+        await ctx.send(embed=emb)
 
 
 def setup(client):
