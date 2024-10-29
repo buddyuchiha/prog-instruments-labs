@@ -36,7 +36,11 @@ class Auto(commands.Cog):
             a = None
             with  sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('SELECT date FROM gold WHERE date = "{}"'.format(time))
+                cur.execute(
+                    'SELECT date FROM gold WHERE date = "{}"'.format(
+                        time
+                        )
+                    )
                 for result in cur:
                     a = result[0]
                 return a
@@ -45,7 +49,11 @@ class Auto(commands.Cog):
             a = None
             with  sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('SELECT guild_id FROM gold WHERE date = "{}"'.format(time))
+                cur.execute(
+                    'SELECT guild_id FROM gold WHERE date = "{}"'.format(
+                        time
+                        )
+                    )
                 for result in cur:
                     a = result[0]
                 return a
@@ -54,7 +62,11 @@ class Auto(commands.Cog):
             a = None
             with sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('SELECT status FROM gold WHERE channel_id = "{}"'.format(guild))
+                cur.execute(
+                    'SELECT status FROM gold WHERE channel_id = "{}"'.format(
+                        guild
+                        )
+                    )
                 for result in cur:
                     a = result[0]
                 return a
@@ -62,7 +74,11 @@ class Auto(commands.Cog):
         def delete(time, delete):
             with  sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('DELETE from gold where date= "{}"'.format(time))
+                cur.execute(
+                    'DELETE from gold where date= "{}"'.format(
+                        time
+                        )
+                    )
 
         def prem():
             moscow_time = datetime.now(pytz.timezone('Europe/Moscow'))
@@ -73,7 +89,9 @@ class Auto(commands.Cog):
                 delete(time, delete_result)
 
 
-        await self.client.change_presence(activity = discord.Game('m!meme | m!help'))
+        await self.client.change_presence(
+            activity = discord.Game('m!meme | m!help')
+            )
         channels_mem = check_meme(channels_m)
         chance = [1, 2]
         while True:
@@ -95,7 +113,9 @@ class Auto(commands.Cog):
                 result_piar = random.choice(piar)
                 result_meme = random.choice(meme)
                 ran = result_meme
-                emb = discord.Embed (title = '**Auto memes**', color = 0xFFFAFA)
+                emb = discord.Embed (
+                    title = '**Auto memes**', color = 0xFFFAFA
+                    )
                 emb.set_image(url = ran)
                 if result_chance == 1 and result_gold != 1:
                     emb.set_footer(text=f'{result_piar}')
@@ -113,7 +133,11 @@ class Auto(commands.Cog):
             a = None
             with sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('SELECT status FROM gold WHERE guild_id = "{}"'.format(guild))
+                cur.execute(
+                    'SELECT status FROM gold WHERE guild_id = "{}"'.format(
+                        guild
+                        )
+                    )
                 for result in cur:
                     a = result[0]
                 return a
@@ -134,7 +158,8 @@ class Auto(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def automemes(self, ctx, arg):
-        # подключить postgresql или просто добавить перменную bd и подключаться к бд 1 ра
+        # подключить postgresql или просто добавить перменную bd
+        # и подключаться к бд 1 ра
 
         def add(arg):
             with  sqlite3.connect('base.db') as bd:
@@ -143,20 +168,33 @@ class Auto(commands.Cog):
                 moscow_time = datetime.now(pytz.timezone('Europe/Moscow'))
                 date = moscow_time.strftime('%d.%m.%y | %H:%M')
                 cur = bd.cursor()
-                cur.execute('INSERT INTO auto(guild_id, user_id, meme, date) VALUES("{}", "{}", "{}", "{}")'.format(guild_id, user, arg, date))
+                cur.execute(
+                    'INSERT INTO auto(guild_id, user_id, meme, date)'
+                    'VALUES("{}", "{}", "{}", "{}")'.format(
+                        guild_id, user, arg, date
+                        )
+                    )
     
         def change(arg):
             with  sqlite3.connect('base.db') as bd:
                 guild_id = ctx.message.guild.id
                 cur = bd.cursor()
-                cur.execute('UPDATE auto SET meme = {} WHERE guild_id = {}'.format(arg, guild_id))
+                cur.execute(
+                    'UPDATE auto SET meme = {} WHERE guild_id = {}'.format(
+                        arg, guild_id
+                        )
+                    )
 
         status = None
         def check(arg, status):
             guild_id = ctx.message.guild.id
             with  sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('SELECT meme FROM auto WHERE guild_id = {}'.format(guild_id)) 
+                cur.execute(
+                    'SELECT meme FROM auto WHERE guild_id = {}'.format(
+                        guild_id
+                        )
+                    ) 
                 for result in cur:
                     status = result[0]
                 return status
@@ -183,12 +221,21 @@ class Auto(commands.Cog):
             else:
                 change(arg)
             embed = discord.Embed(title = '✅ Успешно.', color = 0xFFFAFA)
-            embed.description = f'Автопубликация **успешна подключена** участником {ctx.message.author.mention} на канал `{arg}`.'
+            embed.description = (
+                f'Автопубликация **успешна подключена**'
+                f'участником {ctx.message.author.mention} на канал `{arg}`.'
+            )
             await ctx.send(embed = embed)
             return
         else:
             embed = discord.Embed(title = '🔔 Ошибка.', color = 0xFFFAFA)
-            embed.description = 'Для **подключения** автопубликации на вашем сервере должно быть **более 15 участников** или вы можете оформить **золотой сервер** к автопубликации на нашем тех. сервере.[Оформить подписку (кликабельно)](https://discord.gg/8BnEfUq99j).'
+            embed.description = (
+                'Для **подключения** автопубликации на вашем сервере должно'
+                'быть **более 15 участников** или вы можете оформить' 
+                '**золотой сервер** к автопубликации на нашем тех. сервере.'
+                '[Оформить подписку (кликабельно)]'
+                '(https://discord.gg/8BnEfUq99j).'
+            )
             embed.set_footer(text= 'Error: 005')
             await ctx.send(embed = embed)
             return

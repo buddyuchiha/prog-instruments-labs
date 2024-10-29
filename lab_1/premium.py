@@ -24,7 +24,12 @@ class Prem(commands.Cog):
             status = 1
             with  sqlite3.connect('base.db') as bd:
                 cur = bd.cursor()
-                cur.execute('INSERT INTO gold(guild_id, status, date) VALUES("{}", "{}", "{}")'.format(id, status, date))
+                cur.execute(
+                    'INSERT INTO gold(guild_id, status, date)'
+                    'VALUES("{}", "{}", "{}")'.format(
+                        id, status, date
+                        )
+                    )
 
         moscow_time = datetime.now(pytz.timezone('Europe/Moscow'))
         time = moscow_time.strftime('%d.%m')
@@ -55,7 +60,9 @@ class Prem(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             i = int(error.retry_after)
             embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
-            embed.description = 'Бот имеет **задержку**, пожалуйста, подождите {} сек.'.format(i)
+            embed.description = (
+                f'Бот имеет **задержку**, пожалуйста, подождите {i} сек.'
+            )
             embed.set_footer(text= 'Error: 004')
             await ctx.send(embed = embed)
 

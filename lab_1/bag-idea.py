@@ -9,7 +9,10 @@ class Other(commands.Cog):
     async def bag(self, ctx, *, text = None):
         if not ctx.message.author.guild_permissions.administrator:
             embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
-            embed.description = 'Для **отправки** бага на тех. сервер у вас должны быть **админ** права!'
+            embed.description = (
+                'Для **отправки** бага на тех. сервер' 
+                'у вас должны быть **админ** права!'
+            )
             embed.set_footer(text= 'Error: 002')
             await ctx.send(embed = embed)
             return
@@ -19,7 +22,8 @@ class Other(commands.Cog):
             embed.set_footer(text= 'Error: 003')
             await ctx.send(embed = embed)
             return
-        elif '@everyone' or '@here' in text: # проверка на @everyone/@here и его удаление/замена
+        elif '@everyone' or '@here' in text: 
+            # проверка на @everyone/@here и его удаление/замена
             global bi1
             global bi2
             if '@everyone' and '@here' in text:
@@ -35,17 +39,28 @@ class Other(commands.Cog):
 
         channel = self.client.get_channel(int(773549208577900584))
         embed = discord.Embed (title = f'🗣 **Новый баг!**', color = 0xFFFAFA)
-        embed.description = f'**О баге:** `{text}`\nДоп. информация:\n||Server name: {ctx.guild.name}\nServer id: {ctx.guild.id}\nUser_nickname: {ctx.author.mention}\nUser_id: {ctx.author.id}||'
+        embed.description = (
+            f'**О баге:** `{text}`\nДоп. информация:\n||'
+            f'Server name: {ctx.guild.name}\n'
+            f'Server id: {ctx.guild.id}\n'
+            f'User_nickname: {ctx.author.mention}\n'
+            f'User_id: {ctx.author.id}||'
+        )
         await channel.send(embed = embed)
         emb = discord.Embed(color = 0x696969)
-        emb.description = 'Баг отправлен на [тех. сервер](https://discord.gg/8BnEfUq99j)!'
+        emb.description = (
+            'Баг отправлен на [тех. сервер](https://discord.gg/8BnEfUq99j)!'
+        )
         await ctx.send(embed = emb)
 
     @commands.command()
     async def idea(self, ctx, *, text = None):
         if not ctx.message.author.guild_permissions.administrator:
             embed = discord.Embed(title = '🔔 Ошибка.', color = 0xA52A2A)
-            embed.description = 'Для **отправки** идеи на тех. сервер у вас должны быть **админ** права!'
+            embed.description = (
+                'Для **отправки** идеи на тех. сервер у вас должны быть'
+                '**админ** права!'
+            )
             embed.set_footer(text= 'Error: 002')
             await ctx.send(embed = embed)
             return
@@ -55,7 +70,8 @@ class Other(commands.Cog):
             embed.set_footer(text= 'Error: 003')
             await ctx.send(embed = embed)
             return
-        elif '@everyone' or '@here' in text: # проверка на @everyone/@here и его удаление/замена
+        elif '@everyone' or '@here' in text: 
+            # проверка на @everyone/@here и его удаление/замена
             global bi1
             global bi2
             if '@everyone' and '@here' in text:
@@ -71,10 +87,19 @@ class Other(commands.Cog):
 
         channel = self.client.get_channel(int(772422615280123914))
         embed = discord.Embed (title = f'🗣 **Новая идея!**', color = 0xFFFAFA)
-        embed.description = f'**О идеи:** `{text}`\nДоп. информация:\n||Server name: {ctx.guild.name}\nServer id: {ctx.guild.id}\nUser_nickname: {ctx.author.mention}\nUser_id: {ctx.author.id}||'
+        embed.description = (
+            f'**О идеи:** `{text}`\nДоп. информация:\n||'
+            f'Server name: {ctx.guild.name}\n'
+            f'Server id: {ctx.guild.id}\n'
+            f'User_nickname: {ctx.author.mention}\n'
+            f'User_id: {ctx.author.id}||'
+        )
         await channel.send(embed = embed)
         emb = discord.Embed(color = 0x696969)
-        emb.description = 'Идея отправлена на [тех. сервер](https://discord.gg/8BnEfUq99j)!'
+        emb.description = (
+            'Идея отправлена на [тех. сервер]'
+            '(https://discord.gg/8BnEfUq99j)!'
+        )
         await ctx.send(embed = emb)
 
 
