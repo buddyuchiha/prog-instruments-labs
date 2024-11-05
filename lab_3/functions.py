@@ -24,7 +24,7 @@ def read_csv_file(file_path:str) -> list[list[str]]:
         raise e
         
         
-def read_json(file_path: str) -> dict:
+def read_json_file(file_path: str) -> dict:
     """
     Read JSON from file.
     Args:
