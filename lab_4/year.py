@@ -1,6 +1,13 @@
 import os
 import csv
 import datetime
+from logging_config import (
+    get_info_logger,
+)
+
+
+info_logger = get_info_logger()
+
 def write_to_file(file_name, data):
     """
     Записывает данные в отдельный файл.
@@ -13,6 +20,7 @@ def split_csv_by_years(path, output_folder):
     Разбивает исходный csv файл на N файлов, где каждый отдельный файл будет соответствовать одному году.
     Записывает файлы в папку task2.
     """
+    info_logger.info("Запуск функции split_csv_by_years с входным путём: %s и выходной папкой: %s", path, output_folder)
     with open(path, 'r') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -28,5 +36,7 @@ def split_csv_by_years(path, output_folder):
         
         filtered_data = [row for row in data if datetime.datetime.strptime(row[0], '%Y-%m-%d').year == year]
         write_to_file(new_file_name, filtered_data)
+        info_logger.info("Год %d обработан. Создан файл: %s", year, new_file_name)
+    info_logger.info("Функция split_csv_by_years завершена.")
         
 
