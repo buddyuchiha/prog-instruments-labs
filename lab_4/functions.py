@@ -4,8 +4,9 @@ import datetime
 
 from logging_config import (
     get_info_logger,
-    get_value_logger,
+    get_value_logger
 )
+
 
 info_logger = get_info_logger()
 value_logger = get_value_logger()

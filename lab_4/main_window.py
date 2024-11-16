@@ -41,119 +41,189 @@ class Weather(QMainWindow):
         
         
     def get_file_path(self) -> None:
-        info_logger.info("Начат процесс получения пути датасета")
+        info_logger.info(
+            "Начат процесс получения пути датасета"
+            )
         try:
             self.chose_file_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку с датасетом')
             QtWidgets.QMessageBox.information(self, 'Папка с датасетом выбрана', self.chose_file_path)
             self.chose_file_path += "/dataset.csv"
-            info_logger.info("Получен датает со следующим путем: %s", self.chose_file_path)
+            info_logger.info(
+                "Получен датает со следующим путем: %s",
+                self.chose_file_path
+                )
         except FileNotFoundError as e:
-            check_logger.info("Датасет не найден: %s", e)
+            check_logger.info(
+                "Датасет не найден: %s",
+                e
+                )
             QtWidgets.QMessageBox.information(self, 'Ошибка', 'Выбран невозможный датасет')
         
     def get_weather_info(self):
-        info_logger.info("Начат процесс получения погоды")
+        info_logger.info(
+            "Начат процесс получения погоды"
+            )
         try:
             selected_date = self.ui.button_chose_weather.date().toString("yyyy-MM-dd")
-            info_logger.info("Получена дата: %s", selected_date)
+            info_logger.info(
+                "Получена дата: %s",
+                selected_date
+                )
             info = functions.get_info(selected_date, self.chose_file_path)
             QtWidgets.QMessageBox.information(self, 'Данные за этот год', info)
         except FileNotFoundError as e:
-            check_logger.warning("Файл не найден: %s", e)
+            check_logger.warning(
+                "Файл не найден: %s",
+                e
+                )
             QtWidgets.QMessageBox.information(self, 'Ошибка', 'Вы не выбрали датасет')
     
     def get_weather_x_y_info(self):
-        info_logger.info("Начат процесс получения погоды по X и Y датасетам")
+        info_logger.info(
+            "Начат процесс получения погоды по X и Y датасетам"
+            )
         try: 
             selected_date = self.ui.button_chose_weather.date().toString("yyyy-MM-dd")
-            info_logger.info("Получена дата: %s", selected_date)
+            info_logger.info(
+                "Получена дата: %s",
+                selected_date
+                )
             info = functions.get_info_XY(selected_date, self.chose_x_y_path)
             if not isinstance(info, list):
                 info = [info]
             info_str = "\n".join(info)
             QtWidgets.QMessageBox.information(self, 'Данные за этот год', info_str)
         except FileNotFoundError as e:
-            check_logger.warning("Файл не найден: %s", e)
+            check_logger.warning(
+                "Файл не найден: %s",
+                e
+                )
             QtWidgets.QMessageBox.information(self, 'Ошибка', 'Разбейте файл и выберите верную дату')
 
  
 
     def get_weather_years_info(self):
-        info_logger.info("Начат процесс получения погоды по годовым датасетам")
+        info_logger.info(
+            "Начат процесс получения погоды по годовым датасетам"
+            )
         try:
             selected_date_str = self.ui.button_chose_weather.date().toString("yyyy-MM-dd")
-            info_logger.info("Получена дата: %s", selected_date_str)
+            info_logger.info(
+                "Получена дата: %s",
+                selected_date_str
+                )
             selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d").date()
             info = functions.get_info_year(selected_date, self.chose_years_path)
             QtWidgets.QMessageBox.information(self, 'Данные за этот год', info[11:])
         except FileNotFoundError as e:
-            check_logger.warning("Файл не найден: %s", e)
+            check_logger.warning(
+                "Файл не найден: %s",
+                e
+                )
             QtWidgets.QMessageBox.information(self, 'Ошибка', 'Разбейте файл и выберите верную дату')
 
     def get_weather_weeks_info(self):
-        info_logger.info("Начат процесс получения погоды по недельным датасетам")
+        info_logger.info(
+            "Начат процесс получения погоды по недельным датасетам"
+            )
         try:
             selected_date_str = self.ui.button_chose_weather.date().toString("yyyy-MM-dd")
-            info_logger.info("Получена дата: %s", selected_date_str)
+            info_logger.info(
+                "Получена дата: %s",
+                selected_date_str
+                )
             selected_date = datetime.strptime(selected_date_str, "%Y-%m-%d").date()
             info = functions.get_info_week(selected_date, self.chose_weeks_path)
             QtWidgets.QMessageBox.information(self, 'Данные за этот год', info[11:])
         except FileNotFoundError as e:
-            check_logger.warning("Файл не найден: %s", e)
+            check_logger.warning(
+                "Файл не найден: %s",
+                e
+                )
             QtWidgets.QMessageBox.information(self, 'Ошибка', 'Разбейте файл и выберите верную дату')
 
     def cut_datatset_x_y(self) -> None:
-        info_logger.info("Начат процесс разбиения файла на X и Y датасеты")
+        info_logger.info(
+            "Начат процесс разбиения файла на X и Y датасеты"
+            )
         if not (self.chose_file_path):
             self.chose_file_path = QtWidgets.QFileDialog.getExistingDirectory(
             self, 'Выберите папку с датасетом')
             QtWidgets.QMessageBox.information(self, 'Папка с датасетом выбрана', self.chose_file_path)
             self.chose_file_path += "/dataset.csv"
-            info_logger.info("Получен датает со следующим путем: %s", self.chose_file_path)
+            info_logger.info(
+                "Получен датает со следующим путем: %s",
+                self.chose_file_path
+                )
             self.chose_x_y_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов X и Y')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов X и Y выбрана', self.chose_x_y_path)
-            info_logger.info("Получен датасет выходных данных со следующим путем: %s", self.chose_x_y_path)
+            info_logger.info(
+                "Получен датасет выходных данных со следующим путем: %s",
+                self.chose_x_y_path)
             split.split_csv(self.chose_file_path, self.chose_x_y_path)
         elif (self.chose_file_path):
             self.chose_x_y_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов X и Y')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов X и Y выбрана', self.chose_x_y_path)
-            info_logger.info("Получен датасет выходных данных датасет со следующим путем: %s", self.chose_x_y_path)
+            info_logger.info(
+                "Получен датасет выходных данных датасет со следующим путем: %s",
+                self.chose_x_y_path)
             split.split_csv(self.chose_file_path, self.chose_x_y_path)
             
     def cut_datatset_years(self) -> None:
-        info_logger.info("Начат процесс разбиения файла на годовые датасеты")
+        info_logger.info(
+            "Начат процесс разбиения файла на годовые датасеты"
+            )
         if not (self.chose_file_path):
             self.chose_file_path = QtWidgets.QFileDialog.getExistingDirectory(
             self, 'Выберите папку с датасетом')
             QtWidgets.QMessageBox.information(self, 'Папка с датасетом выбрана', self.chose_file_path)
             self.chose_file_path += "/dataset.csv"
-            info_logger.info("Получен датает со следующим путем: %s", self.chose_file_path)
+            info_logger.info(
+                "Получен датает со следующим путем: %s",
+                self.chose_file_path
+                )
             self.chose_years_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов по годам')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов по годам', self.chose_years_path)
-            info_logger.info("Получен датасет выходных данных со следующим путем: %s", self.chose_years_path)
+            info_logger.info(
+                "Получен датасет выходных данных со следующим путем: %s",
+                self.chose_years_path
+                )
             year.split_csv_by_years(self.chose_file_path, self.chose_years_path)
         elif (self.chose_file_path):
             self.chose_years_path= QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов по годам')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов по годам', self.chose_years_path)
-            info_logger.info("Получен датасет выходных данных со следующим путем: %s", self.chose_years_path)
+            info_logger.info(
+                "Получен датасет выходных данных со следующим путем: %s",
+                self.chose_years_path)
             year.split_csv_by_years(self.chose_file_path, self.chose_years_path)
         
     def cut_datatset_weeks(self) -> None:
-        info_logger.info("Начат процесс разбиения файла на недельные датасеты")
+        info_logger.info(
+            "Начат процесс разбиения файла на недельные датасеты"
+            )
         if not (self.chose_file_path):
             self.chose_file_path = QtWidgets.QFileDialog.getExistingDirectory(
             self, 'Выберите папку с датасетом')
             QtWidgets.QMessageBox.information(self, 'Папка с датасетом выбрана', self.chose_file_path)
             self.chose_file_path += "/dataset.csv"
-            info_logger.info("Получен датает со следующим путем: %s", self.chose_file_path)
+            info_logger.info(
+                "Получен датает со следующим путем: %s",
+                self.chose_file_path
+                )
             self.chose_weeks_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов по неделям')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов по неделям выбрана',  self.chose_weeks_path)
-            info_logger.info("Получен датасет выходных данных со следующим путем: %s", self.chose_weeks_path)
+            info_logger.info(
+                "Получен датасет выходных данных со следующим путем: %s",
+                self.chose_weeks_path
+                )
             week.split_csv_by_weeks(self.chose_file_path,  self.chose_weeks_path)
         else:
             self.chose_weeks_path = QtWidgets.QFileDialog.getExistingDirectory(self, 'Выберите папку для выгрузки файлов по неделям')
             QtWidgets.QMessageBox.information(self, 'Папка для выгрузки файлов по неделям выбрана',  self.chose_weeks_path)
-            info_logger.info("Получен датасет выходных данных со следующим путем: %s", self.chose_weeks_path)
+            info_logger.info(
+                "Получен датасет выходных данных со следующим путем: %s",
+                self.chose_weeks_path
+                )
             week.split_csv_by_weeks(self.chose_file_path,  self.chose_weeks_path)
         
         
@@ -163,5 +233,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = Weather()
     window.show()
-    info_logger.info("Программа запущена")
+    info_logger.info(
+        "Программа запущена"
+        )
     sys.exit(app.exec())
