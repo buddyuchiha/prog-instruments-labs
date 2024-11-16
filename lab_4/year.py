@@ -23,7 +23,7 @@ def split_csv_by_years(path, output_folder):
     Записывает файлы в папку task2.
     """
     info_logger.info(
-        "Запуск функции split_csv_by_years с входным путём: %s и выходной папкой: %s",
+        "Running the split_csv_by_years function with input path: %S and outgoing folder: %s",
         path, output_folder
         )
     with open(path, 'r') as f:
@@ -42,11 +42,11 @@ def split_csv_by_years(path, output_folder):
         filtered_data = [row for row in data if datetime.datetime.strptime(row[0], '%Y-%m-%d').year == year]
         write_to_file(new_file_name, filtered_data)
         info_logger.info(
-            "Год %d обработан. Создан файл: %s",
+            "The year %d has been processed. A file has been created: %s",
             year, new_file_name
             )
     info_logger.info(
-        "Функция split_csv_by_years завершена."
+        "The split_csv_by_years function is completed."
         )
         
 

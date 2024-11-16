@@ -15,7 +15,7 @@ def split_csv(path, output_folder):
     Первый файл содержит даты, второй файл содержит данные.
     """
     info_logger.info(
-        "Запуск функции split_csv с входный путем %s и выходным путем %s",
+        "Running the split_csv function with input path %s and output path %s",
         path, output_folder
         )
     with open(path, 'r') as file:
@@ -33,7 +33,7 @@ def split_csv(path, output_folder):
             writer_x.writerow([data[i][0]])  
             writer_y.writerow(data[i][1:]) 
     info_logger.info(
-        "Функция split_csv завершена. Файлы: %s, %s",
+        "The split_csv function is completed. Files: %s, %s",
         x_file, y_file
         )
     

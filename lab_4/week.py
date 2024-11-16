@@ -24,7 +24,7 @@ def split_csv_by_weeks(path, output_folder):
     Разбивает исходный csv файл на файлы по неделям.
     """
     info_logger.info(
-        "Запуск функции split_csv_by_weeks с входным путём: %s и выходной папкой: %s", 
+        "Running the split_ctv_by_weeks function with input path: %s and output folder: %s", 
         path, output_folder
         )
     with open(path, 'r') as f:
@@ -49,7 +49,7 @@ def split_csv_by_weeks(path, output_folder):
             week_end_str = current_week_end.strftime('%Y%m%d')
             file_name = os.path.join(output_folder, f'{week_start_str}_{week_end_str}.csv')
             write_to_file(file_name, current_week_data)
-            info_logger.info("Неделя обработана: %s - %s ", 
+            info_logger.info("he week has been processed: %s - %s ", 
                              week_start_str, week_end_str
                             )
             
@@ -62,7 +62,7 @@ def split_csv_by_weeks(path, output_folder):
     file_name = os.path.join(output_folder, f'{week_start_str}_{week_end_str}.csv')
     write_to_file(file_name, current_week_data)
     info_logger.info(
-        "Функция split_csv_by_weeks завершена."
+        "The split_csv_by_weeks function is completed."
         )
     
 
